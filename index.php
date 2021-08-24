@@ -6,15 +6,6 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 </head>
 
-<script>
- $(document).ready(function() {
-  var table = $('#example').DataTable();
-  var tt = new $.fn.dataTable.TableTools( table );
-  
-  $( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
- } );
-</script>
-
 <body>
 <div class="container">
  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
@@ -41,24 +32,19 @@
   <tbody>
    <?php
    include 'DB.php';
-   $pdo = Database::connect();
-   $sql = 'SELECT * FROM perpusguru ORDER BY id DESC';
-   foreach ($pdo->query($sql) as $row){
+   $sql =  'SELECT * FROM perpusguru ORDER BY id DESC';
+   $result = mysqli_query($con, $sql);
+   foreach ($result as $row){
     echo '<tr>';
     echo '<td>'. $row['judul'] . '</td>';
     echo '<td>'. $row['kodebuku'] . '</td>';
     echo '<td>'. $row['pengarang'] . '</td>';
     echo '<td width=250>';
-    echo '<a class="btn btn-info" href="read.php?id='.$row['id'].'">Info</a>';
-    echo '  ';
     echo '<a class="btn btn-success" href="update.php?id='.$row['id'].'">Update</a>';
     echo '  ';
     echo '<a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Delete</a>';
-    echo '</td>';
    }
-   Database::disconnect();
-   ?>
-
+?>
   </tbody>
  </table>
  <figure class="text-center">
