@@ -17,7 +17,7 @@
             </div>
 
 
-            <form class="form-horizontal" action="proccess_create.php" method="post">
+            <form class="form-horizontal" action="procces_create.php" method="post">
 
               <div class="control-group">
                 <label class="control-label fw-bold">Judul</label>
